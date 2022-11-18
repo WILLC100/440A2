@@ -3,14 +3,14 @@ package com.example.search;
 import java.util.LinkedList;
 
 public class Grid {
-    private Node[][] grid;
+    private Node[][] ground;
 
     Grid(int rows, int cols){
-        this.grid = new Node[rows][cols];
+        this.ground = new Node[rows][cols];
     }
 
-    public Node[][] getGrid(){
-        return grid;
+    public Node[][] getGround(){
+        return ground;
     }
 
 

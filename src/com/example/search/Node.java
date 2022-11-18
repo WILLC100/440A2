@@ -12,6 +12,15 @@ public class Node {
 
     }
 
+    public String getPos(){
+        return x+","+y;
+    }
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
 
 
 
