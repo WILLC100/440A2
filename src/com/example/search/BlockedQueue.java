@@ -18,4 +18,8 @@ public class BlockedQueue {
     public int size(){
         return blockedNodes.size();
     }
+
+    public LinkedList<Node> getList(){
+        return blockedNodes;
+    }
 }

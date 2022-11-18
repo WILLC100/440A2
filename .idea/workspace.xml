@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c2f38b5-875f-4bd7-bbc4-fe16865596c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/example/search/BlockedQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/example/search/FilterEstimate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/example/search/StateEstimate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/BlockedQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/BlockedQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/FilterEstimate.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
