@@ -10,7 +10,7 @@ public class ActionQueue {
         this.queue = new LinkedList<Action>();
     }
 
-    public void insert(Action action){
+    public void add(Action action){
         this.queue.add(action);
     }
 

@@ -1,6 +1,6 @@
 package com.example.search;
 
-public class Manager {
+public class ManagerA {
 
     public static void main(String[] args){
 
@@ -20,6 +20,16 @@ public class Manager {
             ground[2][1] = new Node(2,3,CellType.BLOCKED);
             blocked.add(ground[2][1]);
             ground[2][2] = new Node(3,3,CellType.HIGHWAY);
+
+        double prior = 1.0/8.0;
+        StateEstimate current = new StateEstimate(3,3, prior, blocked);
+        current.print();
+
+        ActionQueue actions = new ActionQueue();
+            actions.add(Action.Right);
+            actions.add(Action.Right);
+            actions.add(Action.Down);
+            actions.add(Action.Down);
 
 
 
