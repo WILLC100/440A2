@@ -48,10 +48,12 @@ with open(file_name, 'w') as f:
     #intial point tbd
     f.write("100 50\n") #grid size
     f.write(start + "\n") #random start
+    """
     for i in range(100):
         f.write(actions[i])
     f.write("\n")
-    #actions
+    """
+    #assigning terrain types
     cellCount = 0
     for x in range(100):
         for y in range(50):
