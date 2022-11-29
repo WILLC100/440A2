@@ -23,6 +23,9 @@ public class ActionQueue {
         return this.queue.size();
     }
 
+    public LinkedList<Action> getQueue(){
+        return this.queue;
+    }
     public String printAsString(){
 
         String building = "";

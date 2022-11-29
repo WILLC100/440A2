@@ -1,6 +1,7 @@
 package com.example.search;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GroundTruthQueue {
 
@@ -12,18 +13,63 @@ public class GroundTruthQueue {
         this.truths.add(x+","+y);
     }
 
-    public void generate(ActionQueue actions, BlockedMap blocked, Grid grid){
+    public void generate(ActionQueue actions, Grid grid){
 
         String pos = this.truths.get(truths.size()-1);
         String[] coords = pos.split(",");
         int x = Integer.parseInt(coords[0]);
         int y = Integer.parseInt(coords[1]);
+        int rows = grid.getRows();
+        int cols = grid.getCols();
 
-        for(Action current : actions){
+
+        for(Action current : actions.getQueue()){
+
+            //stay at an action
+            Random stay = new Random();
+
+            int check = stay.nextInt(10);
+            if(check == 9){
+
+                this.truths.add(pos);
+                continue;
+            }
+
+
             switch(current){
 
                 case Down :
-                    
+                    if(y == rows || grid.visit(x, y+1).getType() == CellType.BLOCKED ) {
+                        this.truths.add(pos);
+                    }else {
+                        y++;
+                        pos = x+","+y;
+                        this.truths.add(pos);
+                    }
+                case Right:
+                    if(x == cols || grid.visit(x+1, y).getType() == CellType.BLOCKED){
+                        this.truths.add(pos);
+                    }else{
+                        x++;
+                        pos = x+","+y;
+                        this.truths.add(pos);
+                    }
+                case Up :
+                    if(y == 1 || grid.visit(x, y-1).getType() == CellType.BLOCKED){
+                        this.truths.add(pos);
+                    }else{
+                        y--;
+                        pos = x+","+y;
+                        this.truths.add(pos);
+                    }
+                case Left:
+                    if(x == 1 || grid.visit(x-1, y).getType() == CellType.BLOCKED){
+                        this.truths.add(pos);
+                    }else{
+                        x--;
+                        pos = x+","+y;
+                        this.truths.add(pos);
+                    }
 
             }
 
@@ -31,6 +77,10 @@ public class GroundTruthQueue {
 
         }
 
+    }
+
+    public ArrayList<String> getTruths(){
+        return this.truths;
     }
     //return true if valid
 
@@ -40,6 +90,11 @@ public class GroundTruthQueue {
 
     public String print(){
 
+        String returnable = "";
+        for( String pos : this.truths){
+            returnable = returnable + pos + " ";
+        }
+        return returnable;
     }
 
 

@@ -7,9 +7,9 @@ import java.util.Scanner;
 public class ManagerB {
 
     public static void main(String[] args){
-            System.out.println(System.getProperty("user.dir"));
+            //System.out.println(System.getProperty("user.dir"));
             int i = 1;
-            int j = 1;
+            int j = 10;
 
             File current = new File("src/com/example/search/grids/grid" + i + "/grid" + i + ".txt");
             try {
@@ -54,7 +54,7 @@ public class ManagerB {
                         pather.write(y+ "\n");
 
                         ActionQueue action100 = new ActionQueue();
-                        SensorQueue sensor100 = new SensorQueue();
+
 
                         actionList(action100 );
 
@@ -65,12 +65,19 @@ public class ManagerB {
 
                         GroundTruthQueue GTQ = new GroundTruthQueue(x, y);
 
-                        GTQ.generate(action100, blocked, gridcurr);
+                        GTQ.generate(action100, gridcurr);
 
-                        pather.write( GTQ.print() );
+                        pather.write( GTQ.print() +  "\n");
+
+                        SensorQueue sensed = new SensorQueue(visitation.getType());
+
+                        sensed.generate(GTQ, gridcurr);
 
 
+                       // System.out.println("WACK"); //sajdoiaojd
 
+
+                        pather.write(sensed.print() + "\n");
                         pather.close();
 
 

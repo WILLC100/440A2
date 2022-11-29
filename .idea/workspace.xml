@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c2f38b5-875f-4bd7-bbc4-fe16865596c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/example/search/BlockedMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/example/search/GroundTruthQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/example/search/ManagerB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/search/ActionQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/ActionQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/BlockedQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/CellType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/CellType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/search/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/GroundTruthQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/GroundTruthQueue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/search/ManagerA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/ManagerA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/SEStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/SEStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/StateEstimate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/StateEstimate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/grids/grid1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/grids/gridmaker.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/grids/gridmaker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/ManagerB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/ManagerB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/SensorQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/SensorQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/grids/grid1/path1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/grids/grid1/path1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +48,26 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\whc27\CS440\Assignment2\src" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ManagerB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.search.ManagerB" />
+      <module name="Assignment2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ManagerB" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
