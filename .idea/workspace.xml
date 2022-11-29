@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c2f38b5-875f-4bd7-bbc4-fe16865596c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/example/search/SEStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/example/search/SensorQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/example/search/BlockedMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/example/search/GroundTruthQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/example/search/ManagerB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/ActionQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/ActionQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/BlockedQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/CellType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/CellType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/Grid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/search/ManagerA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/ManagerA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/SEStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/SEStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/search/StateEstimate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/StateEstimate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/grids/grid1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/grids/gridmaker.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/grids/gridmaker.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,14 +42,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/whc27/CS440/Assignment2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/whc27/CS440/Assignment2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\whc27\CS440\Assignment2\src" />

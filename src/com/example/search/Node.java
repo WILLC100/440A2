@@ -22,6 +22,10 @@ public class Node {
         return y;
     }
 
+    public CellType getType(){
+        return this.type;
+    }
+
 
 
 }

@@ -5,6 +5,8 @@ For any cell 50% - N, 20% - H, 20% - T, 10% - Blocked
 
 import random
 
+
+
 #running distribution across all cells
 cells = []
 for i in range(5000):
@@ -29,7 +31,7 @@ while True:
     start = str(cellSelectRow) + " " + str(cellSelectCol)
     break
 
-#random 100 actions
+'''
 actions = []
 for i in range(100):
     actionSelect = random.randint(1,4)
@@ -41,13 +43,14 @@ for i in range(100):
         actions.append("D")
     else:
         actions.append("R")
+'''
                         
 #file-creation
-file_name = "grid1.txt"
+file_name = "grid10.txt"
 with open(file_name, 'w') as f:
     #intial point tbd
     f.write("100 50\n") #grid size
-    f.write(start + "\n") #random start
+   # f.write(start + "\n") #random start
     """
     for i in range(100):
         f.write(actions[i])

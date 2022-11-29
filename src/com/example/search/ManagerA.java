@@ -7,7 +7,7 @@ public class ManagerA {
 
 
         // have it taken in arg and files at some point
-        BlockedQueue blocked = new BlockedQueue();
+        BlockedMap blocked = new BlockedMap();
         Grid grid = new Grid(3,3);
         Node[][] ground = grid.getGround();
             ground[0][0] = new Node(1,1,CellType.HIGHWAY);
@@ -18,7 +18,7 @@ public class ManagerA {
             ground[1][2] = new Node(3,2,CellType.NORMAL);
             ground[2][0] = new Node(1,3,CellType.NORMAL);
             ground[2][1] = new Node(2,3,CellType.BLOCKED);
-            blocked.add(ground[2][1]);
+            blocked.put(2+","+3);
             ground[2][2] = new Node(3,3,CellType.HIGHWAY);
 
         double prior = 1.0/8.0;

@@ -7,11 +7,11 @@ public class SEStorage {
 
     private ArrayList<StateEstimate> SEStore;
     private int rows, cols, lastindex;
-    private BlockedQueue blocked;
+    private BlockedMap blocked;
     private Grid grid;
 
 
-    SEStorage(int rows, int cols, double prior, BlockedQueue blocked, Grid grid){
+    SEStorage(int rows, int cols, double prior, BlockedMap blocked, Grid grid){
         this.SEStore = new ArrayList<StateEstimate>();
         this.rows = rows;
         this.cols = cols;
@@ -49,7 +49,7 @@ public class SEStorage {
 
                     for(int j = 0; j<currentArr[0].length; j++){
 
-                        currentArr[i][j] = calculation(current, prior, action, cell);
+                      //  currentArr[i][j] = calculation(current, prior, action, cell);
                     }
                 }
 
@@ -58,7 +58,7 @@ public class SEStorage {
     }
 
     private double calculation(){
-
+        return 0;
     }
 
 

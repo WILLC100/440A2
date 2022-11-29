@@ -19,4 +19,24 @@ public class ActionQueue {
     }
 
 
+    public int size() {
+        return this.queue.size();
+    }
+
+    public String printAsString(){
+
+        String building = "";
+        for(Action current : this.queue){
+
+            switch(current){
+                case Right -> building+="R ";
+                case Left -> building +="L ";
+                case Down -> building += "D ";
+                case Up -> building += "U ";
+
+            }
+        }
+
+        return building;
+    }
 }

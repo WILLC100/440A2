@@ -6,16 +6,18 @@ public class StateEstimate {
     private static final int OFFSET = 1;
     private double[][] StateProb;
 
-    StateEstimate(int rows, int cols, double prior, BlockedQueue blocked){
+    StateEstimate(int rows, int cols, double prior, BlockedMap blocked){
         this.StateProb = new double[rows][cols];
 
         for(double[] row : StateProb){
             Arrays.fill(row, prior );
         }
 
-        for(Node current : blocked.getList()) {
+       /* for(Node current : blocked.getList()) {
             StateProb[current.getY() - OFFSET][current.getX() - OFFSET] = 0;
         }
+
+        */
 
     }
     StateEstimate(int rows, int cols){
