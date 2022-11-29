@@ -22,15 +22,19 @@ public class ManagerA {
             ground[2][2] = new Node(3,3,CellType.HIGHWAY);
 
         double prior = 1.0/8.0;
-        StateEstimate current = new StateEstimate(3,3, prior, blocked);
-        current.print();
+        SEStorage storing = new SEStorage(3, 3, prior, blocked, grid );
+        storing.print();
 
         ActionQueue actions = new ActionQueue();
             actions.add(Action.Right);
             actions.add(Action.Right);
             actions.add(Action.Down);
             actions.add(Action.Down);
-
+        SensorQueue sensed = new SensorQueue();
+            sensed.add(CellType.NORMAL);
+            sensed.add(CellType.NORMAL);
+            sensed.add(CellType.HIGHWAY);
+            sensed.add(CellType.HIGHWAY);
 
 
 

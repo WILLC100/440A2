@@ -18,6 +18,31 @@ public class StateEstimate {
         }
 
     }
+    StateEstimate(int rows, int cols){
+        this.StateProb = new double[rows][cols];
+
+    }
+
+
+    StateEstimate(StateEstimate prior){
+        double[][] priorarr = prior.getArr();
+        this.StateProb = new double[prior.getRows()][prior.getCols()];
+
+        for(int i =0; i< StateProb.length; i++){
+            System.arraycopy(priorarr[i], 0, StateProb[i], 0, StateProb[i].length);
+        }
+
+    }
+    public double[][] getArr(){
+        return this.StateProb;
+    }
+
+    public int getRows(){
+        return this.StateProb.length;
+    }
+    public int getCols(){
+        return this.StateProb[0].length;
+    }
 
 
 
