@@ -1,5 +1,6 @@
 package com.example.search;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SEStorage {
@@ -272,7 +273,7 @@ public class SEStorage {
         this.SEStore.add(state);
         this.lastindex = lastindex++;
     }
-    public void print(){
+    public void print() throws IOException {
         for(StateEstimate current : SEStore){
             current.print();
         }
