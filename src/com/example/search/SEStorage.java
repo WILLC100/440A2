@@ -64,14 +64,14 @@ public class SEStorage {
 
                     currprior = actionCalc(priorAr, reading, action, i, j, rows, cols);
                     currentAr[i][j] = currprior;
-                         System.out.println("AT " + i + " " + j + ": " + currprior);
+                       //  System.out.println("AT " + i + " " + j + ": " + currprior);
                     currentsum += currprior;
 
                 }
             }
 
         normalize(currentAr, currentsum);
-          System.out.println(currentsum);
+          //System.out.println(currentsum);
         this.SEStore.add(current);
 
     }
