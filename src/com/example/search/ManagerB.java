@@ -9,7 +9,7 @@ public class ManagerB {
     public static void main(String[] args){
             //System.out.println(System.getProperty("user.dir"));
             int i = 2;
-            int j = 3;
+            int j = 4;
 
             File current = new File("src/com/example/search/grids/grid" + i + "/grid" + i + ".txt");
             try {

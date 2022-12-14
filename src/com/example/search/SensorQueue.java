@@ -7,9 +7,24 @@ public class SensorQueue {
 
     private ArrayList<CellType> readings;
 
+
+    SensorQueue(){
+        this.readings = new ArrayList<CellType>();
+    }
     SensorQueue(CellType cell){
         this.readings = new ArrayList<CellType>();
         this.readings.add(cell);
+    }
+
+    public int size(){
+        return this.readings.size();
+    }
+
+    public CellType pop(){
+        CellType current = this.readings.get(0);
+        this.readings.remove(0);
+        return current;
+
     }
 
     public void add(CellType cell){

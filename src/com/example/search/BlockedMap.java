@@ -9,6 +9,9 @@ public class BlockedMap {
         this.blockedPoints = new HashMap<String, Integer>();
     }
 
+    public int size(){
+        return this.blockedPoints.size();
+    }
     public void put(String coord){
         this.blockedPoints.put(coord, 1);
     }

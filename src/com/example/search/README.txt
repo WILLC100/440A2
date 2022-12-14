@@ -10,4 +10,4 @@ Initial non-blocked random point
 
 The grids were generated using gridmaker.py, and each grid is stored in it's own folder from under grids
 Each random action was generated using ManagerB main system. It may take multiple runs/stops of ManagerB in order to produce an output file
-as the current version may not write to the file correctly. 
+as the current version may not write to the file correctly.
