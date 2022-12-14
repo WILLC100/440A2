@@ -104,7 +104,7 @@ public class SEStorage {
         switch(action){
             case Right : // move is the right
                if(x > 0  ){ // if there is a contributing cell to the left
-                   System.out.println("Right Made To " + x );
+                   //System.out.println("Right Made To " + x );
                    if(standing == reading){ // the reading is correct 90% of the time
                        total+= priorAr[y][x-1] * 0.9 * 0.9;
 
@@ -112,7 +112,7 @@ public class SEStorage {
                        total+= priorAr[y][x-1] * 0.9 * 0.05;
                    }
                }
-               if(xres < rows){ // if the current cell can move to the right
+               if(xres < rows && priorAr[y][x+1] != 0){ // if the current cell can move to the right
                     //describing the situation of a failure of the movement
                    if(standing == reading){
                        total+= priorAr[y][x] * 0.1 * 0.9;
@@ -133,7 +133,7 @@ public class SEStorage {
                break;
             case Left :
                 if(xres < rows  ){ // if there is a contributing cell to the right
-                    System.out.println("Left Made To " + x );
+                    //System.out.println("Left Made To " + x );
                     if(standing == reading){ // the reading is correct 90% of the time
                         total+= priorAr[y][x+1] * 0.9 * 0.9;
 
@@ -141,7 +141,7 @@ public class SEStorage {
                         total+= priorAr[y][x+1] * 0.9 * 0.05;
                     }
                 }
-                if(x > 0){ // if the current cell can move to the left
+                if(x > 0 && priorAr[y][x-1] != 0){ // if the current cell can move to the left
                     //describing the situation of a failure of the movement
                     if(standing == reading){
                         total+= priorAr[y][x] * 0.1 * 0.9;
@@ -161,7 +161,7 @@ public class SEStorage {
                 break;
             case Up :
                 if(yres < cols  ){ // if there is a contributing cell below
-                    System.out.println("Up Made To " + x );
+                    //System.out.println("Up Made To " + x );
                     if(standing == reading){ // the reading is correct 90% of the time
                         total+= priorAr[y+1][x] * 0.9 * 0.9;
 
@@ -169,7 +169,7 @@ public class SEStorage {
                         total+= priorAr[y+1][x] * 0.9 * 0.05;
                     }
                 }
-                if(y > 0){ // if the current cell can move up
+                if(y > 0 && priorAr[y-1][x] != 0){ // if the current cell can move up
                     //describing the situation of a failure of the movement
                     if(standing == reading){
                         total+= priorAr[y][x] * 0.1 * 0.9;
@@ -192,7 +192,7 @@ public class SEStorage {
                 break;
             case Down :
                 if(y > 0  ){ // if there is a contributing cell above
-                    System.out.println("Down Made To " + x );
+                    //System.out.println("Down Made To " + x );
                     if(standing == reading){ // the reading is correct 90% of the time
                         total+= priorAr[y-1][x] * 0.9 * 0.9;
 
@@ -200,7 +200,7 @@ public class SEStorage {
                         total+= priorAr[y-1][x] * 0.9 * 0.05;
                     }
                 }
-                if(yres < rows){ // if the current cell can move up
+                if(yres < rows && priorAr[y+1][x] != 0){ // if the current cell can move down
                     //describing the situation of a failure of the movement
                     if(standing == reading){
                         total+= priorAr[y][x] * 0.1 * 0.9;
