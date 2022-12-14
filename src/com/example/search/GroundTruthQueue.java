@@ -12,7 +12,9 @@ public class GroundTruthQueue {
         this.truths = new ArrayList<String>();
         this.truths.add(x+","+y);
     }
-
+    public void remove(int index){
+        this.truths.remove(index);
+    }
     public void generate(ActionQueue actions, Grid grid){
 
         String pos = this.truths.get(truths.size()-1);
@@ -46,6 +48,7 @@ public class GroundTruthQueue {
                         pos = x+","+y;
                         this.truths.add(pos);
                     }
+                    break;
                 case Right:
                     if(x == cols || grid.visit(x+1, y).getType() == CellType.BLOCKED){
                         this.truths.add(pos);
@@ -54,6 +57,7 @@ public class GroundTruthQueue {
                         pos = x+","+y;
                         this.truths.add(pos);
                     }
+                    break;
                 case Up :
                     if(y == 1 || grid.visit(x, y-1).getType() == CellType.BLOCKED){
                         this.truths.add(pos);
@@ -62,6 +66,7 @@ public class GroundTruthQueue {
                         pos = x+","+y;
                         this.truths.add(pos);
                     }
+                    break;
                 case Left:
                     if(x == 1 || grid.visit(x-1, y).getType() == CellType.BLOCKED){
                         this.truths.add(pos);
@@ -70,6 +75,7 @@ public class GroundTruthQueue {
                         pos = x+","+y;
                         this.truths.add(pos);
                     }
+
 
             }
 

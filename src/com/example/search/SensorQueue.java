@@ -26,6 +26,9 @@ public class SensorQueue {
         return current;
 
     }
+    public void remove(int index){
+        this.readings.remove(index);
+    }
 
     public void add(CellType cell){
         this.readings.add(cell);

@@ -28,9 +28,13 @@ public class Grid {
 
     }
 
-    public int getRows(){
-        return this.rows;
-    }
+
+
+
+
+        public int getRows(){
+            return this.rows;
+        }
     public int getCols(){
         return this.cols;
     }

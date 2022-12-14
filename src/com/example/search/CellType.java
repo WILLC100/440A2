@@ -19,5 +19,24 @@ public enum CellType {
     }
 
 
+    public static String print(CellType type) {
+
+        switch(type){
+            case BLOCKED ->{
+                return "B";
+            }
+
+            case HIGHWAY ->{
+                return "H";
+            }
+            case NORMAL -> {
+                return "N";
+            }
+            case TRAVERSE -> {
+                return "T";
+            }
+        }
+        return null;
+    }
 }
 

@@ -1,106 +1,118 @@
 package com.example.search;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class ManagerB {
 
-    public static void main(String[] args){
-            //System.out.println(System.getProperty("user.dir"));
-            int i = 2;
-            int j = 4;
-
-            File current = new File("src/com/example/search/grids/grid" + i + "/grid" + i + ".txt");
-            try {
-                Scanner reader = new Scanner(current);
-
-                int rows = reader.nextInt();
-                int cols = reader.nextInt();
-
-                Grid gridcurr = new Grid(rows, cols);
-                BlockedMap blocked = new BlockedMap();
-                while(reader.hasNext()){
-
-                    int y = reader.nextInt();
-                    int x = reader.nextInt();
-                    CellType cell = CellType.parse(reader.nextLine() );
-
-                    gridcurr.assignType(x, y, cell, blocked);
-
-                }
+    public static void main(String[] args) throws IOException {
 
 
-
-
-
-                    try {
-                        FileWriter pather = new FileWriter(new File("src/com/example/search/grids/grid"+i+"/path"+j+".txt"));
-
-                         int x = randomX(cols);
-                         int y = randomY(rows);
-
-                        while(blocked.containsKey(x+","+y)){
-                            x = randomX(cols);
-                            y = randomY(rows);
-
-                           // System.out.println("wack");
-                        }
-
-                        //System.out.println(x);
-                        //System.out.println(y);
-
-                        pather.write( x + " ");
-                        pather.write(y+ "\n");
-
-                        ActionQueue action100 = new ActionQueue();
-
-
-                        actionList(action100 );
-
-                        pather.write(action100.printAsString() +"\n");
-                        
-
-                        Node visitation = gridcurr.visit(x,y);
-
-                        GroundTruthQueue GTQ = new GroundTruthQueue(x, y);
-
-                        GTQ.generate(action100, gridcurr);
-
-                        pather.write( GTQ.print() +  "\n");
-
-                        SensorQueue sensed = new SensorQueue(visitation.getType());
-
-                        sensed.generate(GTQ, gridcurr);
-
-
-                       // System.out.println("WACK"); //sajdoiaojd
-
-
-                        pather.write(sensed.print() + "\n");
-                        pather.close();
-
-
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-
-
-
-
-
-
-
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+        BufferedWriter out = null;
+        try {
+            FileWriter fstream = new FileWriter("GridandPaths.txt");
+            out = new BufferedWriter(fstream);
+            out.write("");
+        }
+        catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        finally {
+            if(out != null) {
+                out.close();
             }
+        }
+
+        int rows = 100;
+        int cols = 50;
+
+
+        int x =  randomX(cols);
+        int y = randomY(rows);
+
+
+        Grid base = new Grid(rows, cols);
+        BlockedMap blocked = new BlockedMap();
+
+
+        for(int i = 0 ; i<base.getRows(); i++){
+            for(int j = 0; j<base.getCols(); j++ ){
+
+                base.assignType(j+1, i+1, randomCell(), blocked );
+
+            }
+        }
+
+        System.out.println(rows + " " + cols);
+
+
+        for(int i = 0; i<base.getRows(); i++){
+            for(int j = 0; j<base.getCols(); j++){
+                int tx = j+1;
+                int ty = i+1;
+               System.out.println(ty + " " + tx + " " +  CellType.print( base.visit(tx, ty).getType() ));
+            }
+        }
+
+        System.out.println("Paths");
+        System.out.println(x + "," + y);
+
+        ArrayList<GroundTruthQueue> pathTruths = new ArrayList<GroundTruthQueue>(); //101 measures
+        ArrayList<ActionQueue> paths = new ArrayList<ActionQueue>(); //100 actions
+        ArrayList<SensorQueue> sensedQ = new ArrayList<SensorQueue>(); //101 measures
+            for(int i = 0; i<10; i++){
+                ActionQueue current = new ActionQueue();
+                actionList(current);
+                paths.add(current );
+                GroundTruthQueue currentGTQ = new GroundTruthQueue(x,y);
+                currentGTQ.generate(current, base);
+                pathTruths.add( currentGTQ);
+                SensorQueue currentSen = new SensorQueue(base.visit(x,y).getType());
+                currentSen.generate(currentGTQ, base);
+                sensedQ.add(currentSen);
+
+                //System.out.println(sensedQ.size());
+            }
+        for(int i = 0; i<10; i++){
+            ActionQueue currentA = paths.get(i);
+            GroundTruthQueue currentGTQ = pathTruths.get(i);
+            SensorQueue currentSen = sensedQ.get(i);
+
+            currentGTQ.remove(0);
+            currentSen.remove(0);
+
+            System.out.println(i);
+
+            System.out.println( currentA.printAsString());
+            System.out.println( currentGTQ.print() );
+            System.out.println( currentSen.print() );
+
+            System.out.println();
+        }
 
 
 
 
     }
 
+    public static CellType randomCell(){
+        Random rand = new Random();
+        int current = rand.nextInt(100);
 
+       if (current < 50) {
+           return CellType.NORMAL;
+       }
+       if(current<70) {
+           return CellType.HIGHWAY;
+       }
+       if(current<90 ){
+           return CellType.TRAVERSE;
+       }
+
+       return CellType.BLOCKED;
+    }
 
 
     public static void actionList(ActionQueue actions){
@@ -124,7 +136,7 @@ public class ManagerB {
                     break;
                 case 3 :
                     actions.add(Action.Right);
-                    break; 
+                    break;
                 default:
 
 
