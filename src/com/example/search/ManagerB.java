@@ -12,18 +12,11 @@ public class ManagerB {
 
         BufferedWriter out = null;
         try {
-            FileWriter fstream = new FileWriter("GridandPaths.txt");
+            FileWriter fstream = new FileWriter("ResultB.txt");
             out = new BufferedWriter(fstream);
             out.write("");
-        }
-        catch (IOException e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-        finally {
-            if(out != null) {
-                out.close();
-            }
-        }
+
+
 
         int rows = 100;
         int cols = 50;
@@ -45,36 +38,36 @@ public class ManagerB {
             }
         }
 
-        System.out.println(rows + " " + cols);
+        out.write(rows + " " + cols+"\n");
 
 
         for(int i = 0; i<base.getRows(); i++){
             for(int j = 0; j<base.getCols(); j++){
                 int tx = j+1;
                 int ty = i+1;
-               System.out.println(ty + " " + tx + " " +  CellType.print( base.visit(tx, ty).getType() ));
+                out.write(ty + " " + tx + " " +  CellType.print( base.visit(tx, ty).getType() ) +"\n");
             }
         }
 
-        System.out.println("Paths");
-        System.out.println(x + "," + y);
+        out.write("\nPaths\n" );
+        out.write(x + "," + y + "\n");
 
         ArrayList<GroundTruthQueue> pathTruths = new ArrayList<GroundTruthQueue>(); //101 measures
         ArrayList<ActionQueue> paths = new ArrayList<ActionQueue>(); //100 actions
         ArrayList<SensorQueue> sensedQ = new ArrayList<SensorQueue>(); //101 measures
-            for(int i = 0; i<10; i++){
-                ActionQueue current = new ActionQueue();
-                actionList(current);
-                paths.add(current );
-                GroundTruthQueue currentGTQ = new GroundTruthQueue(x,y);
-                currentGTQ.generate(current, base);
-                pathTruths.add( currentGTQ);
-                SensorQueue currentSen = new SensorQueue(base.visit(x,y).getType());
-                currentSen.generate(currentGTQ, base);
-                sensedQ.add(currentSen);
+        for(int i = 0; i<10; i++){
+            ActionQueue current = new ActionQueue();
+            actionList(current);
+            paths.add(current );
+            GroundTruthQueue currentGTQ = new GroundTruthQueue(x,y);
+            currentGTQ.generate(current, base);
+            pathTruths.add( currentGTQ);
+            SensorQueue currentSen = new SensorQueue(base.visit(x,y).getType());
+            currentSen.generate(currentGTQ, base);
+            sensedQ.add(currentSen);
 
-                //System.out.println(sensedQ.size());
-            }
+            //System.out.println(sensedQ.size());
+        }
         for(int i = 0; i<10; i++){
             ActionQueue currentA = paths.get(i);
             GroundTruthQueue currentGTQ = pathTruths.get(i);
@@ -83,15 +76,21 @@ public class ManagerB {
             currentGTQ.remove(0);
             currentSen.remove(0);
 
-            System.out.println(i);
+            out.write(i+"\n");
 
-            System.out.println( currentA.printAsString());
-            System.out.println( currentGTQ.print() );
-            System.out.println( currentSen.print() );
+            out.write( currentA.printAsString() +"\n");
+            out.write( currentGTQ.print() +"\n");
+            out.write( currentSen.print() +"\n");
 
-            System.out.println();
+            out.write("\n");
         }
 
+
+        }
+        catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        out.close();
 
 
 
