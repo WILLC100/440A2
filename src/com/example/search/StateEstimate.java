@@ -13,11 +13,12 @@ public class StateEstimate {
             Arrays.fill(row, prior );
         }
 
-       /* for(Node current : blocked.getList()) {
-            StateProb[current.getY() - OFFSET][current.getX() - OFFSET] = 0;
+        for(String coord : blocked.keySet()){
+            String[] temp = coord.split(",");
+            this.StateProb[Integer.parseInt(temp[1])-1][Integer.parseInt(temp[0])-1] = 0;
         }
 
-        */
+        //System.out.print(prior);
 
     }
     StateEstimate(int rows, int cols){
@@ -26,15 +27,6 @@ public class StateEstimate {
     }
 
 
-    StateEstimate(StateEstimate prior){
-        double[][] priorarr = prior.getArr();
-        this.StateProb = new double[prior.getRows()][prior.getCols()];
-
-        for(int i =0; i< StateProb.length; i++){
-            System.arraycopy(priorarr[i], 0, StateProb[i], 0, StateProb[i].length);
-        }
-
-    }
     public double[][] getArr(){
         return this.StateProb;
     }
@@ -51,14 +43,17 @@ public class StateEstimate {
     public void print(){
 
         for(int i = 0; i<StateProb.length; i++){
-            System.out.print("ROW " + (i+OFFSET) + ": ");
+            System.out.print((i+OFFSET) + ": ");
 
             for(int j = 0; j<StateProb[0].length; j++){
                 System.out.print( StateProb[i][j] + ", " );
             }
 
+
+
             System.out.println();
         }
+        System.out.println();
     }
 
 

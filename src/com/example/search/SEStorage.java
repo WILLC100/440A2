@@ -52,48 +52,110 @@ public class SEStorage {
 
                     // go do each one.
 
+
                     boolean validAction = isValid(action, priorAr[0].length, priorAr.length, i+1, j+1);
 
                     if(!validAction){ // means that the cell in that direction is blocked or you have reached the edge
-
 
                         currprior = priorAr[i][j] * 0.9;
 
                     }else{
 
-                       currprior = actionCalc( action, i, j);
+                       currprior = actionCalc(priorAr, reading, action, i, j, rows, cols);
 
                     }
                     currentAr[i][j] = currprior;
+                    System.out.println("AT " + i + " " + j + " " + currprior);
                     currentsum += currprior;
 
                 }
             }
 
-
-
-
+        normalize(currentAr, currentsum);
+        System.out.println(currentsum);
         this.SEStore.add(current);
-
-
-
-
 
     }
 
-    private double actionCalc(Action action, int y, int x){
+    private void normalize(double[][] currentAr, double currentsum){
+
+        for(int i = 0; i<currentAr.length; i++){
+            for (int j = 0; j<currentAr[0].length ; j++){
+                currentAr[i][j] = currentAr[i][j]/currentsum;
+            }
+        }
+
+    }
+
+    private double actionCalc(double[][] priorAr,
+                              CellType reading, Action action,
+                              int y, int x,
+                              int rows, int cols){
+
+        double total = 0;
 
         switch(action){
+            case Right : // move the right
+               if(x > 0 ){ // if there is a contributing cell to the left
+
+                   if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
+                       total+= priorAr[y][x-1] * 0.9 * 0.9;
+                        System.out.println("CORRECT RIGHT ");
+                   }else{ // correct incorrect reading
+                       total+= priorAr[y][x-1] * 0.9 * 0.05;
+                       System.out.println("INCORRECT RIGHT ");
+                   }
+               }
+               break;
+            case Left :
+                if(x < cols-1 ){ // if there is a contributing cell to the left
+
+                    if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
+                        total+= priorAr[y][x+1] * 0.9 * 0.9;
+                        System.out.println("CORRECT LEFT ");
+                    }else{ // correct incorrect reading
+                        total+= priorAr[y][x+1] * 0.9 * 0.05;
+                        System.out.println("INCORRECT LEFT ");
+                    }
+                }
+                break;
             case Up :
+                if(y < rows-1 ){ // if there is a contributing cell to the left
 
+                    if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
+                        total+= priorAr[y+1][x] * 0.9 * 0.9;
+                        System.out.println("CORRECT UP");
+                    }else{ // correct incorrect reading
+                        total+= priorAr[y+1][x] * 0.9 * 0.05;
+                        System.out.println("INCORRECT UP");
+                    }
+                }
+                break;
+            case Down :
+                if(y > 0 ){ // if there is a contributing cell to the left
 
-
-
-
-
-
-
+                    if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
+                        total+= priorAr[y-1][x] * 0.9 * 0.9;
+                        System.out.println("CORRECT DOWN");
+                    }else{ // correct incorrect reading
+                        total+= priorAr[y-1][x] * 0.9 * 0.05;
+                        System.out.println("INCORRECT DOWN");
+                    }
+                }
+                break;
         }
+
+        if(this.grid.visit(x+1, y+1).getType() == reading ){ //correct reading and stayed in place
+
+
+            total+= priorAr[y][x] * 0.1 * 0.9;
+            System.out.println("CORRECT STAY ");
+        }else{ //incorrect and stayed
+            total+= priorAr[y][x] * 0.1 * 0.05;
+            System.out.println("INCORRECT STAY ");
+        }
+
+        return total;
 
     }
 
@@ -152,28 +214,6 @@ public class SEStorage {
     }
 
 
- /*
-    private StateEstimate  generateState(Action action, CellType cell, StateEstimate prior){
-
-
-            double[][] priorArr = prior.getArr();
-
-            StateEstimate current = new StateEstimate(prior.getRows(), prior.getCols());
-
-                double[][] currentArr = current.getArr();
-
-                for(int i =0; i<currentArr.length; i++){
-
-                    for(int j = 0; j<currentArr[0].length; j++){
-
-                      //  currentArr[i][j] = calculation(current, prior, action, cell);
-                    }
-                }
-
-                return current;
-
-    }
-*/
 
 
 

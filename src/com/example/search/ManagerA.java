@@ -19,21 +19,23 @@ public class ManagerA {
             base.assignType(2,3,CellType.BLOCKED, blocked);
             base.assignType(3,3, CellType.HIGHWAY, blocked);
 
-        double prior =  1/ ( rows*cols - blocked.size() );
+        double prior =  1/ 8.0;
             //create action list
         ActionQueue actions = new ActionQueue();
             actions.add(Action.Right);
             actions.add(Action.Right);
-            actions.add(Action.Down);
-            actions.add(Action.Down);
+          //  actions.add(Action.Down);
+        //    actions.add(Action.Down);
 
             //create sensor list
         SensorQueue sensed = new SensorQueue();
             sensed.add(CellType.NORMAL);
             sensed.add(CellType.NORMAL);
-            sensed.add(CellType.HIGHWAY);
-            sensed.add(CellType.HIGHWAY);
+       //     sensed.add(CellType.HIGHWAY);
+       //     sensed.add(CellType.HIGHWAY);
          // Generate State Estimates     and print
+
+       // System.out.println(prior);
         SEStorage store = new SEStorage(rows, cols, prior, blocked, base);
             store.create(actions, sensed);
             store.print();

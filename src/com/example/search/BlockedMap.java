@@ -1,6 +1,7 @@
 package com.example.search;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class BlockedMap {
     private HashMap<String, Integer> blockedPoints;
@@ -20,4 +21,8 @@ public class BlockedMap {
         return this.blockedPoints.containsKey(coord);
     }
 
+    public Set<String> keySet() {
+
+        return this.blockedPoints.keySet();
+    }
 }
