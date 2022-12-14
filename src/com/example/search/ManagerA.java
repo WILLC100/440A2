@@ -1,8 +1,28 @@
 package com.example.search;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class ManagerA {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
+
+        //clearing result file
+        BufferedWriter out = null;
+        try {
+            FileWriter fstream = new FileWriter("ResultA.txt");
+            out = new BufferedWriter(fstream);
+            out.write("");
+        }
+        catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        finally {
+            if(out != null) {
+                out.close();
+            }
+        }
 
         int rows = 3;
         int cols = 3;

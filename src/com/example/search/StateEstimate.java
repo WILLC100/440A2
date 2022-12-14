@@ -1,5 +1,9 @@
 package com.example.search;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class StateEstimate {
@@ -40,20 +44,38 @@ public class StateEstimate {
 
 
 
-    public void print(){
-
+    public void print() throws IOException {
         for(int i = 0; i<StateProb.length; i++){
           //  System.out.print((i+OFFSET) + ": ");
-
             for(int j = 0; j<StateProb[0].length; j++){
                 System.out.print( StateProb[i][j] + ", " );
             }
-
-
-
             System.out.println();
         }
         System.out.println();
+
+        //appending to result file
+        BufferedWriter out = null;
+        try {
+            FileWriter fstream = new FileWriter("ResultA.txt", true);
+            out = new BufferedWriter(fstream);
+            for(int i = 0; i < StateProb.length; i++){
+                for(int j = 0; j < StateProb[0].length; j++){
+                    out.write( StateProb[i][j] + ", " );
+                }
+                out.write("\n");
+            }
+            out.write("\n");
+        }
+        catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        finally {
+            if(out != null) {
+                out.close();
+            }
+        }
+
     }
 
 
