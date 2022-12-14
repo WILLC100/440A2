@@ -61,18 +61,16 @@ public class SEStorage {
                         System.out.println("INVALID ACTION");
                     }else{  } */
 
-                       currprior = actionCalc(priorAr, reading, action, i, j, rows, cols);
-
-
+                    currprior = actionCalc(priorAr, reading, action, i, j, rows, cols);
                     currentAr[i][j] = currprior;
-                  //  System.out.println("AT " + i + " " + j + ": " + currprior);
+                         System.out.println("AT " + i + " " + j + ": " + currprior);
                     currentsum += currprior;
 
                 }
             }
 
         normalize(currentAr, currentsum);
-      //  System.out.println(currentsum);
+          System.out.println(currentsum);
         this.SEStore.add(current);
 
     }
@@ -92,6 +90,9 @@ public class SEStorage {
                               int y, int x,
                               int rows, int cols){
 
+        int xres = x+1;
+        int yres = y+1;
+        CellType standing = this.grid.visit(xres, yres).getType();
         if(this.grid.visit(x+1, y+1).getType() == CellType.BLOCKED){
                 return 0;
         }
@@ -100,81 +101,123 @@ public class SEStorage {
         double total = 0;
 
         switch(action){
-            case Right : // move the right
+            case Right : // move is the right
                if(x > 0  ){ // if there is a contributing cell to the left
-
-                   if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
+                   System.out.println("Right Made To " + x );
+                   if(standing == reading){ // the reading is correct 90% of the time
                        total+= priorAr[y][x-1] * 0.9 * 0.9;
-                      //  System.out.println("CORRECT RIGHT ");
-                   }else{ // correct incorrect reading
-                       total+= priorAr[y][x-1] * 0.9 * 0.05;
-                      // System.out.println("INCORRECT RIGHT ");
-                   }
-               }else{
-               //System.out.println(x + " BAD X");
-                    }
 
-               if( x+2<=rows && this.grid.visit(x+2, y+1).getType() == CellType.BLOCKED){
-                   return priorAr[y][x] * 0.9;
+                   }else{
+                       total+= priorAr[y][x-1] * 0.9 * 0.05;
+                   }
                }
+               if(xres < rows){ // if the current cell can move to the right
+                    //describing the situation of a failure of the movement
+                   if(standing == reading){
+                       total+= priorAr[y][x] * 0.1 * 0.9;
+                   }else{
+                       total+= priorAr[y][x] * 0.1 * 0.05;
+                   }
+
+               }else{
+                   //if cell is the end cell then it stays 100% of the time with the correct reading 90% time
+
+                   if(standing == reading ){
+                       total+= priorAr[y][x] * 0.9;
+                   }else{
+                       total+= priorAr[y][x] * 0.05;
+                   }
+               }
+
                break;
             case Left :
-                if(x < cols-1 ){ // if there is a contributing cell to the left
-
-                    if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
+                if(xres < rows  ){ // if there is a contributing cell to the right
+                    System.out.println("Left Made To " + x );
+                    if(standing == reading){ // the reading is correct 90% of the time
                         total+= priorAr[y][x+1] * 0.9 * 0.9;
-                        //System.out.println("CORRECT LEFT ");
-                    }else{ // correct incorrect reading
+
+                    }else{
                         total+= priorAr[y][x+1] * 0.9 * 0.05;
-                       // System.out.println("INCORRECT LEFT ");
                     }
                 }
+                if(x > 0){ // if the current cell can move to the left
+                    //describing the situation of a failure of the movement
+                    if(standing == reading){
+                        total+= priorAr[y][x] * 0.1 * 0.9;
+                    }else{
+                        total+= priorAr[y][x] * 0.1 * 0.05;
+                    }
 
-                if( x >= 1 && this.grid.visit(x, y+1).getType() == CellType.BLOCKED){
-                    return priorAr[y][x] * 0.9;
+                }else{
+                    //if cell is the end cell then it stays 100% of the time with the correct reading 90% time
+
+                    if(standing == reading ){
+                        total+= priorAr[y][x] * 0.9;
+                    }else{
+                        total+= priorAr[y][x] * 0.05;
+                    }
                 }
                 break;
             case Up :
-                if(y < rows-1 ){ // if there is a contributing cell to the left
-
-                    if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
+                if(yres < cols  ){ // if there is a contributing cell below
+                    System.out.println("Up Made To " + x );
+                    if(standing == reading){ // the reading is correct 90% of the time
                         total+= priorAr[y+1][x] * 0.9 * 0.9;
-                        //System.out.println("CORRECT UP");
-                    }else{ // correct incorrect reading
+
+                    }else{
                         total+= priorAr[y+1][x] * 0.9 * 0.05;
-                       // System.out.println("INCORRECT UP");
                     }
                 }
-                if( y >= 1 && this.grid.visit(x+1, y).getType() == CellType.BLOCKED){
-                    return priorAr[y][x] * 0.9;
+                if(y > 0){ // if the current cell can move up
+                    //describing the situation of a failure of the movement
+                    if(standing == reading){
+                        total+= priorAr[y][x] * 0.1 * 0.9;
+                    }else{
+                        total+= priorAr[y][x] * 0.1 * 0.05;
+                    }
+
+                }else{
+                    //if cell is the end cell then it stays 100% of the time with the correct reading 90% time
+
+                    if(standing == reading ){
+                        total+= priorAr[y][x] * 0.9;
+                    }else{
+                        total+= priorAr[y][x] * 0.05;
+                    }
                 }
+
+
+
                 break;
             case Down :
-                if(y > 0 ){ // if there is a contributing cell to the left
-
-                    if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
+                if(y > 0  ){ // if there is a contributing cell above
+                    System.out.println("Down Made To " + x );
+                    if(standing == reading){ // the reading is correct 90% of the time
                         total+= priorAr[y-1][x] * 0.9 * 0.9;
-                       // System.out.println("CORRECT DOWN");
-                    }else{ // correct incorrect reading
+
+                    }else{
                         total+= priorAr[y-1][x] * 0.9 * 0.05;
-                       // System.out.println("INCORRECT DOWN");
                     }
                 }
-                if( y+2 <= rows && this.grid.visit(x+1, y+2).getType() == CellType.BLOCKED){
-                    return priorAr[y][x] * 0.9;
+                if(yres < rows){ // if the current cell can move up
+                    //describing the situation of a failure of the movement
+                    if(standing == reading){
+                        total+= priorAr[y][x] * 0.1 * 0.9;
+                    }else{
+                        total+= priorAr[y][x] * 0.1 * 0.05;
+                    }
+
+                }else{
+                    //if cell is the end cell then it stays 100% of the time with the correct reading 90% time
+
+                    if(standing == reading ){
+                        total+= priorAr[y][x] * 0.9;
+                    }else{
+                        total+= priorAr[y][x] * 0.05;
+                    }
                 }
                 break;
         }
-
-        if(this.grid.visit(x+1, y+1).getType() == reading ){ //correct reading and stayed in place
-
-            total+= priorAr[y][x] * 0.1 * 0.9;
-           // System.out.println("CORRECT STAY ");
-        }else{ //incorrect and stayed
-            total+= priorAr[y][x] * 0.1 * 0.05;
-          //  System.out.println("INCORRECT STAY ");
-        }
-
 
 
         return total;
