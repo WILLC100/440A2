@@ -43,7 +43,7 @@ public class StateEstimate {
     public void print(){
 
         for(int i = 0; i<StateProb.length; i++){
-            System.out.print((i+OFFSET) + ": ");
+          //  System.out.print((i+OFFSET) + ": ");
 
             for(int j = 0; j<StateProb[0].length; j++){
                 System.out.print( StateProb[i][j] + ", " );

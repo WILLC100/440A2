@@ -53,26 +53,26 @@ public class SEStorage {
                     // go do each one.
 
 
-                    boolean validAction = isValid(action, priorAr[0].length, priorAr.length, i+1, j+1);
+                   /* boolean validAction = isValid(action, priorAr[0].length, priorAr.length, i+1, j+1);
 
                     if(!validAction){ // means that the cell in that direction is blocked or you have reached the edge
 
                         currprior = priorAr[i][j] * 0.9;
-
-                    }else{
+                        System.out.println("INVALID ACTION");
+                    }else{  } */
 
                        currprior = actionCalc(priorAr, reading, action, i, j, rows, cols);
 
-                    }
+
                     currentAr[i][j] = currprior;
-                    System.out.println("AT " + i + " " + j + " " + currprior);
+                  //  System.out.println("AT " + i + " " + j + ": " + currprior);
                     currentsum += currprior;
 
                 }
             }
 
         normalize(currentAr, currentsum);
-        System.out.println(currentsum);
+      //  System.out.println(currentsum);
         this.SEStore.add(current);
 
     }
@@ -92,19 +92,30 @@ public class SEStorage {
                               int y, int x,
                               int rows, int cols){
 
+        if(this.grid.visit(x+1, y+1).getType() == CellType.BLOCKED){
+                return 0;
+        }
+
+
         double total = 0;
 
         switch(action){
             case Right : // move the right
-               if(x > 0 ){ // if there is a contributing cell to the left
+               if(x > 0  ){ // if there is a contributing cell to the left
 
                    if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
                        total+= priorAr[y][x-1] * 0.9 * 0.9;
-                        System.out.println("CORRECT RIGHT ");
+                      //  System.out.println("CORRECT RIGHT ");
                    }else{ // correct incorrect reading
                        total+= priorAr[y][x-1] * 0.9 * 0.05;
-                       System.out.println("INCORRECT RIGHT ");
+                      // System.out.println("INCORRECT RIGHT ");
                    }
+               }else{
+               //System.out.println(x + " BAD X");
+                    }
+
+               if( x+2<=rows && this.grid.visit(x+2, y+1).getType() == CellType.BLOCKED){
+                   return priorAr[y][x] * 0.9;
                }
                break;
             case Left :
@@ -112,11 +123,15 @@ public class SEStorage {
 
                     if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
                         total+= priorAr[y][x+1] * 0.9 * 0.9;
-                        System.out.println("CORRECT LEFT ");
+                        //System.out.println("CORRECT LEFT ");
                     }else{ // correct incorrect reading
                         total+= priorAr[y][x+1] * 0.9 * 0.05;
-                        System.out.println("INCORRECT LEFT ");
+                       // System.out.println("INCORRECT LEFT ");
                     }
+                }
+
+                if( x >= 1 && this.grid.visit(x, y+1).getType() == CellType.BLOCKED){
+                    return priorAr[y][x] * 0.9;
                 }
                 break;
             case Up :
@@ -124,11 +139,14 @@ public class SEStorage {
 
                     if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
                         total+= priorAr[y+1][x] * 0.9 * 0.9;
-                        System.out.println("CORRECT UP");
+                        //System.out.println("CORRECT UP");
                     }else{ // correct incorrect reading
                         total+= priorAr[y+1][x] * 0.9 * 0.05;
-                        System.out.println("INCORRECT UP");
+                       // System.out.println("INCORRECT UP");
                     }
+                }
+                if( y >= 1 && this.grid.visit(x+1, y).getType() == CellType.BLOCKED){
+                    return priorAr[y][x] * 0.9;
                 }
                 break;
             case Down :
@@ -136,24 +154,28 @@ public class SEStorage {
 
                     if(this.grid.visit(x+1, y+1).getType() == reading){ // correct
                         total+= priorAr[y-1][x] * 0.9 * 0.9;
-                        System.out.println("CORRECT DOWN");
+                       // System.out.println("CORRECT DOWN");
                     }else{ // correct incorrect reading
                         total+= priorAr[y-1][x] * 0.9 * 0.05;
-                        System.out.println("INCORRECT DOWN");
+                       // System.out.println("INCORRECT DOWN");
                     }
+                }
+                if( y+2 <= rows && this.grid.visit(x+1, y+2).getType() == CellType.BLOCKED){
+                    return priorAr[y][x] * 0.9;
                 }
                 break;
         }
 
         if(this.grid.visit(x+1, y+1).getType() == reading ){ //correct reading and stayed in place
 
-
             total+= priorAr[y][x] * 0.1 * 0.9;
-            System.out.println("CORRECT STAY ");
+           // System.out.println("CORRECT STAY ");
         }else{ //incorrect and stayed
             total+= priorAr[y][x] * 0.1 * 0.05;
-            System.out.println("INCORRECT STAY ");
+          //  System.out.println("INCORRECT STAY ");
         }
+
+
 
         return total;
 
@@ -189,7 +211,7 @@ public class SEStorage {
                 }
                 return true;
             case Right :
-                if(x+1 > cols){
+                if(x == cols){
                     return false;
                 }
                 if ( CellType.BLOCKED == this.grid.visit(x+1, y).getType() ) {

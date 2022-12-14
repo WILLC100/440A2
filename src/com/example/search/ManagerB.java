@@ -115,12 +115,16 @@ public class ManagerB {
 
                 case  0 :
                     actions.add(Action.Down);
+                    break;
                 case 1 :
                     actions.add(Action.Up);
+                    break;
                 case 2 :
                     actions.add(Action.Left);
+                    break;
                 case 3 :
                     actions.add(Action.Right);
+                    break; 
                 default:
 
 

@@ -24,15 +24,15 @@ public class ManagerA {
         ActionQueue actions = new ActionQueue();
             actions.add(Action.Right);
             actions.add(Action.Right);
-          //  actions.add(Action.Down);
-        //    actions.add(Action.Down);
+            actions.add(Action.Down);
+            actions.add(Action.Down);
 
             //create sensor list
         SensorQueue sensed = new SensorQueue();
             sensed.add(CellType.NORMAL);
             sensed.add(CellType.NORMAL);
-       //     sensed.add(CellType.HIGHWAY);
-       //     sensed.add(CellType.HIGHWAY);
+            sensed.add(CellType.HIGHWAY);
+            sensed.add(CellType.HIGHWAY);
          // Generate State Estimates     and print
 
        // System.out.println(prior);
