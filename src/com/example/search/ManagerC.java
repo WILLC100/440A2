@@ -1,6 +1,7 @@
 package com.example.search;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ManagerC {
@@ -10,6 +11,7 @@ public class ManagerC {
 
         String openPath = "ResultB.txt";
         String writePath = "ResultC.txt";
+        String writePath2 = "ResultC2.txt";
         int PATHNO = 0;
         FileReader fr = null;
         try {
@@ -99,19 +101,19 @@ public class ManagerC {
 
             double prior = 1.0 / (rows*cols - blocked.size());
 
-
+            SEStorage storage = new SEStorage(rows, cols, prior, blocked,base);
 
             try {
                 FileWriter fstream = new FileWriter(writePath);
                 out = new BufferedWriter(fstream);
                 out.write("");
 
-                SEStorage storage = new SEStorage(rows, cols, prior, blocked,base);
+
                 storage.create(actions, readings);
                 storage.print(writePath);
 
 
-                
+
             }
             catch (IOException e) {
                 System.err.println("Error: " + e.getMessage());
@@ -120,9 +122,65 @@ public class ManagerC {
                     out.close();
                 }
             }
+            ArrayList<String> maxList = new ArrayList<String>();
+          //  truths.add(0, start);
+          //  maxList.add(start);
+            for(int i =0; i<storage.size(); i++ ){
+                String current = storage.get(i).findMax();
+                maxList.add(current);
+
+            }
+            ArrayList<Integer> avgdiff = new ArrayList<Integer>();
+            for(int i = 0; i<maxList.size(); i++){
+
+                String[] maxCo = maxList.get(i).split(",");
+                String[] truthCo = truths.get(i).split(",");
+
+                int sum = 0;
+                int maxx = Math.abs( Integer.parseInt(maxCo[0]) ) ;
+                int maxy = Math.abs( Integer.parseInt(maxCo[1]) ) ;
+                int truthx = Math.abs( Integer.parseInt(truthCo[0]) );
+                int truthy = Math.abs( Integer.parseInt(truthCo[1]) );
+
+                sum += Math.abs(maxx - truthx);
+                sum += Math.abs(maxy - truthy);
+
+                avgdiff.add(sum);
+
+                //System.out.println(sum);
+            }
+            ArrayList<Double> truthprob = new ArrayList<Double>();
+           // truthprob.add(prior);
+            for(int i = 0; i<truths.size(); i++){
+                truthprob.add( storage.get(i).probability(truths.get(i)) );
+
+            }
+
+            try {
+                FileWriter fstream = new FileWriter(writePath2);
+                out = new BufferedWriter(fstream);
+                out.write("");
+
+                for(int current : avgdiff){
+                    out.write(current + " ");
+
+                }
+                out.write("\n");
+
+                for(double current : truthprob){
+                    out.write(current + " ");
+                }
+                out.write("\n");
 
 
-
+            }
+            catch (IOException e) {
+                System.err.println("Error: " + e.getMessage());
+            }finally{
+                if(out != null){
+                    out.close();
+                }
+            }
 
 
 

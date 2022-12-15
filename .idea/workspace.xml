@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c2f38b5-875f-4bd7-bbc4-fe16865596c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/example/search/ManagerC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GridandPaths.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ResultA.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ResultA.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ResultB.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ResultB.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/Action.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/search/GroundTruthQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/GroundTruthQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/ManagerA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/ManagerA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/search/ManagerB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/ManagerB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/search/ManagerC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/ManagerC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/search/SEStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/SEStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/search/StateEstimate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/search/StateEstimate.java" afterDir="false" />
     </list>

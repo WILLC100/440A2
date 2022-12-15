@@ -22,6 +22,10 @@ public class SEStorage {
 
     }
 
+    public StateEstimate get(int index){
+        return this.SEStore.get(index);
+    }
+
     public void create(ActionQueue actions, SensorQueue sensed ){
         if(actions.size() != sensed.size() ){
             return;
@@ -228,7 +232,9 @@ public class SEStorage {
         }
     }
 
-
+    public int size(){
+        return this.SEStore.size();
+    }
 
 
 

@@ -152,8 +152,14 @@ public class GroundTruthQueue {
         return returnable;
     }
 
-
+    public String get(int index){
+        return this.truths.get(index);
+    }
     public int  size() {
         return this.truths.size();
+    }
+
+    public void add(int i, String start) {
+        truths.add(i, start);
     }
 }

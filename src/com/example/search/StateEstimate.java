@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StateEstimate {
@@ -42,7 +43,31 @@ public class StateEstimate {
         return this.StateProb[0].length;
     }
 
+    public String findMax(){
+        double max = 0.0;
+        String temp = "";
+        for(int i = 0; i<StateProb.length; i++){
+            for(int j = 0; j<StateProb[0].length; j++){
+                if ( StateProb[i][j] > max) {
+                    max = StateProb[i][j];
+                    int x = j + 1;
+                    int y = i + 1;
 
+                    temp = x + "," + y;
+                }
+            }
+        }
+        return temp;
+    }
+
+    public double probability(String coord){
+        String[] temp = coord.split(",");
+        int x = Integer.parseInt(temp[0])-1;
+        int y = Integer.parseInt(temp[1])-1;
+
+        return StateProb[y][x];
+
+    }
 
     public void print(String path) throws IOException {
         for(int i = 0; i<StateProb.length; i++){
