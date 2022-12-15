@@ -84,6 +84,55 @@ public class GroundTruthQueue {
         }
 
     }
+    /*
+    public void noFail(Action action, Grid grid ){
+        String pos = this.truths.get(truths.size()-1);
+        String[] coords = pos.split(",");
+        int x = Integer.parseInt(coords[0]);
+        int y = Integer.parseInt(coords[1]);
+        int rows = grid.getRows();
+        int cols = grid.getCols();
+
+        switch(action){
+
+            case Down :
+                if(y == rows || grid.visit(x, y+1).getType() == CellType.BLOCKED ) {
+                    this.truths.add(pos);
+                }else {
+                    y++;
+                    pos = x+","+y;
+                    this.truths.add(pos);
+                }
+                break;
+            case Right:
+                if(x == cols || grid.visit(x+1, y).getType() == CellType.BLOCKED){
+                    this.truths.add(pos);
+                }else{
+                    x++;
+                    pos = x+","+y;
+                    this.truths.add(pos);
+                }
+                break;
+            case Up :
+                if(y == 1 || grid.visit(x, y-1).getType() == CellType.BLOCKED){
+                    this.truths.add(pos);
+                }else{
+                    y--;
+                    pos = x+","+y;
+                    this.truths.add(pos);
+                }
+                break;
+            case Left:
+                if(x == 1 || grid.visit(x-1, y).getType() == CellType.BLOCKED){
+                    this.truths.add(pos);
+                }else{
+                    x--;
+                    pos = x+","+y;
+                    this.truths.add(pos);
+                }
+
+        }
+    } */
 
     public ArrayList<String> getTruths(){
         return this.truths;
@@ -104,4 +153,7 @@ public class GroundTruthQueue {
     }
 
 
+    public int  size() {
+        return this.truths.size();
+    }
 }

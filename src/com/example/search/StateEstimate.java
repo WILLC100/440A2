@@ -44,7 +44,7 @@ public class StateEstimate {
 
 
 
-    public void print() throws IOException {
+    public void print(String path) throws IOException {
         for(int i = 0; i<StateProb.length; i++){
           //  System.out.print((i+OFFSET) + ": ");
             for(int j = 0; j<StateProb[0].length; j++){
@@ -57,24 +57,26 @@ public class StateEstimate {
         //appending to result file
         BufferedWriter out = null;
         try {
-            FileWriter fstream = new FileWriter("ResultA.txt", true);
+            FileWriter fstream = new FileWriter(path, true);
             out = new BufferedWriter(fstream);
-            for(int i = 0; i < StateProb.length; i++){
-                for(int j = 0; j < StateProb[0].length; j++){
-                    out.write( StateProb[i][j] + ", " );
+            for(int i = 0; i < StateProb.length; i++) {
+                for (int j = 0; j < StateProb[0].length; j++) {
+                    out.write(StateProb[i][j] + ", ");
                 }
                 out.write("\n");
             }
-            out.write("\n");
+            out.write("\nGrid\n");
+
         }
         catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }
-        finally {
-            if(out != null) {
+        finally{
+            if(out!= null){
                 out.close();
             }
         }
+
 
     }
 

@@ -76,7 +76,7 @@ public class ManagerB {
             currentGTQ.remove(0);
             currentSen.remove(0);
 
-            out.write(i+"\n");
+            out.write("Path\n");
 
             out.write( currentA.printAsString() +"\n");
             out.write( currentGTQ.print() +"\n");
@@ -91,6 +91,7 @@ public class ManagerB {
             System.err.println("Error: " + e.getMessage());
         }
         out.close();
+
 
 
 

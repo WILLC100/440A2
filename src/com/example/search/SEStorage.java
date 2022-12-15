@@ -51,16 +51,6 @@ public class SEStorage {
             for(int i = 0; i<priorAr.length; i++){ //y
                 for(int j = 0; j<priorAr[0].length; j++){ //x goes through all x first
 
-                    // go do each one.
-
-
-                   /* boolean validAction = isValid(action, priorAr[0].length, priorAr.length, i+1, j+1);
-
-                    if(!validAction){ // means that the cell in that direction is blocked or you have reached the edge
-
-                        currprior = priorAr[i][j] * 0.9;
-                        System.out.println("INVALID ACTION");
-                    }else{  } */
 
                     currprior = actionCalc(priorAr, reading, action, i, j, rows, cols);
                     currentAr[i][j] = currprior;
@@ -112,7 +102,7 @@ public class SEStorage {
                        total+= priorAr[y][x-1] * 0.9 * 0.05;
                    }
                }
-               if(xres < rows && priorAr[y][x+1] != 0){ // if the current cell can move to the right
+               if(xres < cols && priorAr[y][x+1] != 0){ // if the current cell can move to the right
                     //describing the situation of a failure of the movement
                    if(standing == reading){
                        total+= priorAr[y][x] * 0.1 * 0.9;
@@ -132,7 +122,7 @@ public class SEStorage {
 
                break;
             case Left :
-                if(xres < rows  ){ // if there is a contributing cell to the right
+                if(xres < cols  ){ // if there is a contributing cell to the right
                     //System.out.println("Left Made To " + x );
                     if(standing == reading){ // the reading is correct 90% of the time
                         total+= priorAr[y][x+1] * 0.9 * 0.9;
@@ -160,7 +150,7 @@ public class SEStorage {
                 }
                 break;
             case Up :
-                if(yres < cols  ){ // if there is a contributing cell below
+                if(yres < rows ){ // if there is a contributing cell below
                     //System.out.println("Up Made To " + x );
                     if(standing == reading){ // the reading is correct 90% of the time
                         total+= priorAr[y+1][x] * 0.9 * 0.9;
@@ -200,7 +190,7 @@ public class SEStorage {
                         total+= priorAr[y-1][x] * 0.9 * 0.05;
                     }
                 }
-                if(yres < rows && priorAr[y+1][x] != 0){ // if the current cell can move down
+                if(yres < cols && priorAr[y+1][x] != 0){ // if the current cell can move down
                     //describing the situation of a failure of the movement
                     if(standing == reading){
                         total+= priorAr[y][x] * 0.1 * 0.9;
@@ -226,56 +216,15 @@ public class SEStorage {
     }
 
 
-    private boolean isValid(Action action, int cols, int rows, int y, int x ){
 
-        switch(action){
-            case Up :
-                if(y == 1){
-                    return false;
-                }
-                if ( CellType.BLOCKED == this.grid.visit(x, y-1).getType() ) {
-                    return false;
-                }
-                return true;
-            case Down:
-                if(y+1 > rows ){
-                    return false;
-                }
-                if ( CellType.BLOCKED == this.grid.visit(x , y+1).getType() ) {
-                    return false;
-                }
-
-                return true;
-            case Left :
-                if(x == 1){
-                    return false;
-                }
-                if ( CellType.BLOCKED == this.grid.visit(x-1, y ).getType() ) {
-                    return false;
-                }
-                return true;
-            case Right :
-                if(x == cols){
-                    return false;
-                }
-                if ( CellType.BLOCKED == this.grid.visit(x+1, y).getType() ) {
-                    return false;
-                }
-                return true;
-
-
-        }
-        return false;
-
-    }
 
     public void add(StateEstimate state){
         this.SEStore.add(state);
         this.lastindex = lastindex++;
     }
-    public void print() throws IOException {
+    public void print(String path) throws IOException {
         for(StateEstimate current : SEStore){
-            current.print();
+            current.print(path);
         }
     }
 

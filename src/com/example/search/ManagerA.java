@@ -8,10 +8,11 @@ public class ManagerA {
 
     public static void main(String[] args) throws IOException {
 
+        String path = "ResultA.txt";
         //clearing result file
         BufferedWriter out = null;
         try {
-            FileWriter fstream = new FileWriter("ResultA.txt");
+            FileWriter fstream = new FileWriter(path);
             out = new BufferedWriter(fstream);
             out.write("");
         }
@@ -58,7 +59,7 @@ public class ManagerA {
        // System.out.println(prior);
         SEStorage store = new SEStorage(rows, cols, prior, blocked, base);
             store.create(actions, sensed);
-            store.print();
+            store.print(path);
 
 
 
