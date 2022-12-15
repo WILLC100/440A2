@@ -1,0 +1,144 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage[top=1in, bottom=1in, left=0.8in, right=1in]{geometry}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[ruled,vlined]{algorithm2e}
+\lstset{language=Java, basicstyle={\small\ttfamily}, columns=flexible, belowskip=0mm}
+\setlength{\columnsep}{0.1pc}
+
+\begin{document}
+
+\noindent
+CS 440: Intro to Artificial Intelligence \hfill Assignment 2B\newline
+Fall 2022 \hfill Due December 14, 2022, 11:59 p.m.
+
+\noindent
+\rule{\linewidth}{0.4pt}
+
+\vspace{.5cm}
+
+\textbf{Name}: Will Chen (whc27, Section 2)
+
+\textbf{Name}: Noel Declaro (nd680, Section 1)
+
+\textbf{Name}: Afsana Rahman (ar1641, Section 2)
+
+\vspace{.5cm}
+
+\textbf{Overview}:  This document contains answers to all questions, Problems 5-7, for Assignment 2. The source code for Problems 5 and 7 should be in the zip folder. 
+
+\noindent
+\rule{\linewidth}{0.4pt}
+
+\vspace{.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Question 5 (35 points):} Please refer to the \texttt{README.txt} for implementation details.
+
+\begin{enumerate}[label=(\alph*)] 
+    \item \textbf{3x3 grid.} For the actions {$Right, Right, Down, Down$} and the readings {$N, N, H, H$}, we have the following probability distributions after each step:
+        \begin{itemize}
+            \item After step 1 ($Right, N$):
+            $\begin{matrix}
+                0.00132 & 0.01315 & 0.02500 \\ 
+                0.02368 & 0.23684 & 0.45000 \\ 
+                0.23684 & 0.00000 & 0.01315\\
+            \end{matrix}$
+            \item After step 2($Right, N$):
+            $\begin{matrix}
+                7.7*10^-6 & 0.00001 & 0.00215 \\ 
+                0.00249 & 0.04735 & 0.69784 \\ 
+                0.24923 & 0.00000 & 0.00008\\
+            \end{matrix}$
+            \item After step 3($Down, H$):
+            $\begin{matrix}
+                1.1*10^-6 & 2.2*10^-5 & 1.8*10^-5 \\ 
+                2.2*10^-5 & 0.00406 & 0.00614 \\ 
+                0.02151 & 0.00000 & 0.96822 \\
+            \end{matrix}$
+            \item After step 4($Down, H$):
+            $\begin{matrix}
+                1.2*10^-7 & 2.3*10^-6 & 1.0*10^-7 \\ 
+                1.9*10^-7 & 0.00002 & 3.6*10^-5 \\ 
+                0.00122 & 0.00000 & 0.99850 \\
+            \end{matrix}$
+        \end{itemize}
+    \item \textbf{100x50 grids.} Please refer to the video demonstration folder in the assignment zip folder.
+
+    \item \textbf{Heat maps.} As above, implementation is shown in the videos provided in the implementation zip folder.
+    
+\end{enumerate}
+
+\rule{\linewidth}{0.4pt}
+\vspace{.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Question 6 (10 points):}
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Expected net gain.} The expected net gain of buying $C_1$ would be equal to the 70\% chance of a \$1000 net gain (if $C_1$ is in good shape) plus the the 30\% chance of a \$400 loss (if $C_1$ is in bad shape), which is \$1000*0.7 + (-\$400)*0.3 = \$580.
+
+    \item \textbf{Bayes' Theorem.} The following probabilities are calculated using Bayes' Theorem:
+        \begin{itemize}
+            \item $P(q^+ | pass) = \frac{P(pass | q^+) * P(q^+)}{P(pass | q^+)*P(q+) + P(pass | q^-)*P(q-)} = \frac{0.8*0.7}{0.8*0.7 + 0.35*0.3} = 0.842$
+            \item $P(q^- | pass) = \frac{P(pass | q^-) * P(q^-)}{P(pass | q^+)*P(q+) + P(pass | q^-)*P(q-)} = \frac{0.35*0.3}{0.8*0.7 + 0.35*0.3} = 0.158$
+            \item $P(q^+ | \neg pass) = \frac{P(\neg pass | q^+) * P(q^+)}{P(\neg pass | q^+)*P(q+) + P(\neg pass | q^-)*P(q-)} = \frac{0.2*0.7}{0.2*0.7 + 0.65*0.3} = 0.418$
+            \item $P(q^- | \neg pass) = \frac{P(\neg pass | q^-) * P(q^-)}{P(\neg pass | q^+)*P(q+) + P(\neg pass | q^-)*P(q-)} = \frac{0.65*0.3}{0.2*0.7 + 0.65*0.3} = 0.582$
+        \end{itemize}
+
+    \item \textbf{Expected Utility.} If given a "pass" from the mechanic, then the expected utility of buying the car would be $\$900*P(q^+ | pass) + (-\$500)*P(q^- | pass) = \$678.80$; since it is a positive expected utility, it would be best to buy the car. If given a "fail" from the mechanic, then the expected utility of buying the car would be $\$900*P(q^+ | \neg pass) + (-\$500)*P(q^- | \neg pass) = \$85.20$; again, since it is a positive expected utility, it would still be best to buy the car as there is still some expected net gain. 
+
+    \item \textbf{Decision.} The value of optimal information would be 
+    \begin{equation}
+        P(pass)*expected\_util(pass) + P(\neg pass)*expected\_util(\neg pass) 
+    \end{equation}
+    which gives us (0.8*0.7 + 0.35*0.3)(678.8) + (0.2*0.7 + 0.65*0.3)(85.2) = \$479.94. Since this value is less than the initial expected net gain of \$580 found in part (a), it would be better $not$ to take the car to the mechanic.
+    
+\end{enumerate}
+
+\rule{\linewidth}{0.4pt}
+\vspace{.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Question 7 (15 points):} 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{prob7.png}
+    \caption{Problem 7 network and corresponding probability/action table.}
+    \label{fig:prob7}
+\end{figure}
+
+The process started by assigning the reward values of each state as their respective values (i.e., s1, s2, and s4 = 0, s3 = 1). The gamma value was set to 0.9 and yielded 178 iterations in 0.0100 seconds. In the implementation, the \texttt{valuePolicy(double gamma)} function helps compute the Bellman equation, where the maximums are saved into the \texttt{value} and \texttt{policy} instance variables of each state. We check/terminate for convergence when the previous states' values equal the current states' values. To run the code, run \texttt{javac State.java}, then \texttt{java State}, which will then print each iteration's policies and values (as shown in Figure 2) and the time and number of iterations at the end.
+
+    \begin{figure}
+          \begin{subfigure}{0.31\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{5_1.png}
+            \caption{}
+            \label{fig:5_1}
+          \end{subfigure}
+          \begin{subfigure}{0.31\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{5_2.png}
+            \caption{}
+            \label{fig:5_2}
+          \end{subfigure}
+          \begin{subfigure}{0.31\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{5_3.png}
+            \caption{}
+            \label{fig:5_3}
+          \end{subfigure}
+          \caption{Iteration results.}
+    \end{figure}
+
+
+\end{document}
